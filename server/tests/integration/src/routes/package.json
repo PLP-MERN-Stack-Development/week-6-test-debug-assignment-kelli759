@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test:client": "jest --selectProjects client",
+    "test:server": "jest --selectProjects server",
+    "test": "jest --coverage"
+}
+
+  }
+

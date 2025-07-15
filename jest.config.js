@@ -1,6 +1,30 @@
 // jest.config.js - Root Jest configuration file
 
 module.exports = {
+  projects: [
+    {
+      displayName: 'client',
+      testEnvironment: 'jsdom',
+      testMatch: ['<rootDir>/client/src/tests/**/*.test.js'],
+      setupFilesAfterEnv: ['<rootDir>/client/src/tests/setup.js'],
+      moduleNameMapper: {
+        '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+      },
+      transform: {
+        '^.+\\.(js|jsx)$': 'babel-jest',
+      },
+    },
+    {
+      displayName: 'server',
+      testEnvironment: 'node',
+      testMatch: ['<rootDir>/server/tests/**/*.test.js'],
+      setupFilesAfterEnv: ['<rootDir>/server/tests/setup.js'],
+    },
+  ],
+};
+
+
+module.exports = {
   // Base configuration for all tests
   projects: [
     // Server-side tests configuration

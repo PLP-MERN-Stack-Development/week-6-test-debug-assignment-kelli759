@@ -7,6 +7,19 @@ const app = require('../../src/app');
 const Post = require('../../src/models/Post');
 const User = require('../../src/models/User');
 const { generateToken } = require('../../src/utils/auth');
+const express = require('express');
+const postsRouter = require('../../routes/posts.routes');
+
+const app = express();
+app.use('/api/posts', postsRouter);
+
+describe('GET /api/posts', () => {
+  it('should return 200 and a list of posts', async () => {
+    const res = await request(app).get('/api/posts');
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual(expect.arrayContaining([expect.any(Object)]));
+  });
+});
 
 let mongoServer;
 let token;
